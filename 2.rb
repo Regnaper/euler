@@ -14,4 +14,4 @@ end
 t1 = Time.new
 puts main(2000*2000)
 t1 = Time.new - t1
-puts t1
+puts("Spent time: #{t1}")
