@@ -1,18 +1,16 @@
-require 'prime'
-
-def denominators_by_factorization(number)  
-  primes, powers = number.prime_division.transpose
-  exponents = powers.map{|i| (0..i).to_a}
-  denominators = exponents.shift.product(*exponents).map do |powers|
-    primes.zip(powers).map{|prime, power| prime ** power}.inject(:*)
+def count_of_denominators(number)
+  count = 0
+  (1..Math.sqrt(number).floor).each do |num|
+    count += 2 if number % num == 0
   end
-  denominators.size
+  count -= 1 if Math.sqrt(number).floor == Math.sqrt(number)
+  count
 end
 
 def main(count_of_denominators)
-  number = 2
-  sum = 3
-  until denominators_by_factorization(sum) > count_of_denominators
+  number = 0
+  sum = 0
+  until count_of_denominators(sum) > count_of_denominators
     number += 1
     sum += number
   end
