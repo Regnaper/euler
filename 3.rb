@@ -17,6 +17,6 @@ def main(number)
 end
 
 t1 = Time.new
-puts main(13195)
+puts main(600851475143)
 t1 = Time.new - t1
 puts("Spent time: #{t1}")
