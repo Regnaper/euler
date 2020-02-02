@@ -1,4 +1,8 @@
 def split_string_to_square_array(string)
+"""
+  Преобразование строки в квадратный массив с возвращением массива
+  и размера стороны квадратного массива
+"""
   one_string_array = string.split(" ")
   array_size = Math.sqrt(one_string_array.size).floor
   square_array = Array.new(array_size).map!{Array.new(array_size)}
@@ -11,6 +15,10 @@ def split_string_to_square_array(string)
 end
 
 def max_product_of_string(string, case_count)
+"""
+  Подсчет максимального произведения элементов части массива (подстроки)
+  размера case_count
+"""
   size = string.size
   max = 0
   (0..size-case_count).each do |str_begin|
@@ -22,18 +30,21 @@ def max_product_of_string(string, case_count)
 end
 
 def max_of_square(square_array, array_size, case_count)
+  """
+    Поиск максимального произведения case_count элементов в строке массива (включая столбцы и все диагонали)
+  """
   max = 0
   (0...array_size).each do |i|
-    res = array_size-1 - i
+    dif = array_size-1 - i
     main_diag1 = []
     main_diag2 = []
     side_diag1 = []
     side_diag2 = []
-    (0...array_size-res).each do |j|
-      main_diag1 << square_array[j][j+res]
-      main_diag2 << square_array[j+res][j]
+    (0...array_size-dif).each do |j|
+      main_diag1 << square_array[j][j+dif]
+      main_diag2 << square_array[j+dif][j]
       side_diag1 << square_array[i-j][j]
-      side_diag2 << square_array[res+i-j][res+j]
+      side_diag2 << square_array[dif+i-j][dif+j]
     end
     max_of_string = max_product_of_string(square_array[i], case_count)
     max_of_row = max_product_of_string(square_array.transpose[i], case_count)
@@ -47,7 +58,7 @@ def max_of_square(square_array, array_size, case_count)
   max
 end
 
-def main(string="0 1 2 3 4 5 6 7 8 9", case_count=4)
+def main(string, case_count)
   square_array, array_size = split_string_to_square_array(string)
   case_count = array_size if case_count > array_size
   max_of_square(square_array, array_size, case_count)
