@@ -2,11 +2,9 @@ def main(limit)
   sum = 0
   first = 1
   second = 2
-  flag = true
   while second < limit
-    sum += second if flag
+    sum += second if second % 2 == 0
     first, second = second, first + second
-    flag = flag ? false : true
   end
   sum
 end
