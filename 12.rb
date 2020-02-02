@@ -1,8 +1,6 @@
 def count_of_denominators(number)
   count = 0
-  (1..Math.sqrt(number).floor).each do |num|
-    count += 2 if number % num == 0
-  end
+  (1..Math.sqrt(number).floor).each { |num| count += 2 if number % num == 0 }
   count -= 1 if Math.sqrt(number).floor == Math.sqrt(number)
   count
 end
