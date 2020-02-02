@@ -1,17 +1,15 @@
+def div_check(number)
+  $div_range.each { |num| return false unless number % num == 0 }
+  true
+end
+
 def main(limit)
-number = limit
-div_range = (limit-1).downto(2)
-  while true
-    div_flag = true
-    div_range.each do |num|
-      unless number % num == 0
-        div_flag = false
-        break
-      end
+  number = limit
+  $div_range = (limit-1).downto(2)
+    while true
+      return number if div_check(number)
+      number += limit
     end
-    return number if div_flag
-    number += limit
-  end
 end
 
 t1 = Time.new
