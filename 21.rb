@@ -1,6 +1,7 @@
 def dividers_sum(number)
   sum = 1
-  (2..Math.sqrt(number).ceil).each { |num| sum += (num + number/num) if number % num == 0 }
+  (2..Math.sqrt(number).floor).each { |num| sum += (num + number/num) if number % num == 0 }
+  sum -= Math.sqrt(number) if Math.sqrt(number) == Math.sqrt(number).floor # вычитаем продублированный корень числа
   sum
 end
 
