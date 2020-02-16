@@ -1,5 +1,5 @@
 def get_5_degree(number)
-  num = number.to_s.split(//).inject(0) { |sum, n| sum + n.to_i**5 }
+  num = number.digits(10).inject(0) { |sum, n| sum + n.to_i**5 }
 end
 
 def main(limit)
