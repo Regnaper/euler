@@ -8,7 +8,7 @@ def main()
   pandigitals = []
   (1..99).each do |a|
     limit = ('9' * (5 - a.digits.size)).to_i
-    (1..limit).each do |b|
+    (123..limit).each do |b|
       c = a * b
       pandigitals << c if pandigital(a.digits, b.digits, c.digits)
     end
