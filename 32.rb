@@ -1,4 +1,5 @@
 def pandigital(a, b, c)
+  return false if (a.size + b.size + c.size) != 9
   arr = a | b | c
   return true if arr.sort == (1..9).to_a && arr.size == (a + b + c).size
   false
