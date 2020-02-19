@@ -1,25 +1,19 @@
-def reduce(num, den)
-  num.digits[1] * 1.0 / den.digits[0] if num.digits[0] == den.digits[1]
-end
-
-def gcd(a, b)
-  return a if a == b
-  a, b = b, a if b > a
-  a -= b while a > b 
-  gcd(b, a)
+def check(num, den)
+  return true if num.digits[0] == den.digits[1] && 
+                 num.digits[1] * 1.0 / den.digits[0] == num * 1.0 / den
 end
 
 def main()
   numerator, denominator = 1, 1
   (10..99).each do |den|
     (10...den).each do |num|
-      if reduce(num, den) == num * 1.0 / den
+      if check(num, den)
         numerator *= num
         denominator *= den
       end
     end
   end
-  denominator / gcd(numerator, denominator)
+  denominator / numerator
 end
 
 t1 = Time.new
