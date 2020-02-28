@@ -1,4 +1,4 @@
-def pandigital(a, b, c)
+def pandigital?(a, b, c)
   return false if (a.size + b.size + c.size) != 9
   arr = a | b | c
   return true if arr.sort == (1..9).to_a && arr.size == (a + b + c).size
@@ -11,7 +11,7 @@ def main()
     limit = ('9' * (5 - a.digits.size)).to_i
     (123..limit).each do |b|
       c = a * b
-      pandigitals << c if pandigital(a.digits, b.digits, c.digits)
+      pandigitals << c if pandigital?(a.digits, b.digits, c.digits)
     end
   end
   pandigitals.uniq.reduce(0, :+)
