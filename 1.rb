@@ -1,7 +1,5 @@
-def main(number)
-  sum = 0
-  (0...number).each { |num| sum += num if num%3 == 0 or num%5 == 0 }
-  sum
+def main(limit)
+  ((0...limit).find_all { |num| num%3 == 0 or num%5 == 0 }).inject(0, :+)
 end
 
 t1 = Time.new
