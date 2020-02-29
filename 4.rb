@@ -1,16 +1,11 @@
 def palindrome?(number)
-  str = number.to_s
-  return true if str == str.reverse
-  false
+  return true if number == number.reverse
 end
 
 def main
   max = 0
-  (1..999).each do |a|
-    (1..999).each do |b|
-      c = a * b
-      max = c if c > max && palindrome?(c)
-    end
+  999.downto(100).each do |a|
+    999.downto(100).each { |b| max = a * b if a * b > max && palindrome?((a * b).to_s) }
   end
   max
 end
