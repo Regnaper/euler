@@ -1,12 +1,7 @@
 def main(limit)
-  sum = 0
-  first = 1
-  second = 1
-  while second < limit
-    sum += second if second % 2 == 0
-    first, second = second, first + second
-  end
-  sum
+  fib = [1, 1]
+  fib << fib[-1] + fib[-2] while fib[-1] < limit - fib[-2]
+  (fib.find_all { |num| num % 2 == 0 }).inject(0, :+)
 end
 
 t1 = Time.new
