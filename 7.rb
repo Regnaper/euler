@@ -1,17 +1,7 @@
-def prime?(number)
-  num_sqrt = Math.sqrt(number).floor
-  (2..num_sqrt).each { |num| return false if number % num == 0 }
-  true
-end
+require 'prime'
 
 def main(limit)
-  num = 1
-  count = 0
-  while count < limit
-    num += 1
-    count += 1 if prime?(num)
-  end
-  num
+  Prime.first(limit)[-1]
 end
 
 t1 = Time.new
