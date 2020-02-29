@@ -6,10 +6,10 @@ end
 def main(limit)
   number = limit
   $div_range = (limit-1).downto(2)
-    while true
-      return number if div_check(number)
-      number += limit
-    end
+  while true
+    return number if div_check(number)
+    number += limit
+  end
 end
 
 t1 = Time.new
