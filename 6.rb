@@ -1,10 +1,6 @@
 def main(limit)
-  sum = 0
-  sum_of_square = 0
-  (1..limit).each do |num|
-    sum += num
-    sum_of_square += num**2
-  end
+  sum, sum_of_square = 0, 0
+  (1..limit).each { |num| (sum += num; sum_of_square += num**2) }
   sum**2 - sum_of_square
 end
 
