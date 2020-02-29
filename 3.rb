@@ -6,13 +6,7 @@ end
 
 def main(number)
   num = 2
-  while num <= number
-    if number % num == 0 && prime?(num)
-      number /= num
-    else
-      num += 1
-    end
-  end
+  number % num == 0 && prime?(num) ? number /= num : num += 1 while num <= number
   num
 end
 
