@@ -4,11 +4,11 @@ def div_check(number)
 end
 
 def main(limit)
-  number = limit
+  number = limit * (limit - 1)
   $div_range = (limit-1).downto(2)
   while true
     return number if div_check(number)
-    number += limit
+    number += limit * (limit - 1)
   end
 end
 
