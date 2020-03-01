@@ -1,18 +1,14 @@
 def count_of_denominators(number)
   count = 0
   (1..Math.sqrt(number).floor).each { |num| count += 2 if number % num == 0 }
-  count -= 1 if Math.sqrt(number).floor == Math.sqrt(number)
-  count
+  Math.sqrt(number).floor == Math.sqrt(number) ? count - 1 : count
 end
 
-def main(count_of_denominators)
-  number = 0
-  sum = 0
-  until count_of_denominators(sum) > count_of_denominators
-    number += 1
-    sum += number
+def main(limit)
+  (1..).each do |n| # 1.. only Ruby 2.6 or higher
+    number = n * (n+1) / 2
+    return number if count_of_denominators(number) > 500
   end
-  sum
 end
 
 t1 = Time.new
