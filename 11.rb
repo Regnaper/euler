@@ -14,54 +14,46 @@ def split_string_to_square_array(string)
   return square_array, array_size
 end
 
-def max_product_of_string(string, case_count)
+def max_product_of_string(string, case_size)
 """
   Подсчет максимального произведения элементов части массива (подстроки)
-  размера case_count
+  размера case_size
 """
   size = string.size
   max = 0
-  (0..size-case_count).each do |str_begin|
-    case_of_string = string[str_begin, case_count]
-    product = case_of_string.reduce(1, :*)
+  (0..size-case_size).each do |str_begin|
+    product = string[str_begin, case_size].reduce(1, :*)
     max = product if product > max
   end
   max
 end
 
-def max_of_square(square_array, array_size, case_count)
+def max_of_square(square_array, array_size, case_size)
   """
-    Поиск максимального произведения case_count элементов в строке массива (включая столбцы и все диагонали)
+    Поиск максимального произведения case_size элементов в каждой строке квадратного массива (включая столбцы и все диагонали)
   """
   max = 0
-  (0...array_size).each do |i|
+  (0...array_size).each do |i| # перебираем по номерам все строки массива (включая столбцы и диагонали)
     dif = array_size-1 - i
-    main_diag1 = []
-    main_diag2 = []
-    side_diag1 = []
-    side_diag2 = []
+    main_diag1, main_diag2, side_diag1, side_diag2 = [], [], [], []
     (0...array_size-dif).each do |j|
       main_diag1 << square_array[j][j+dif]
       main_diag2 << square_array[j+dif][j]
       side_diag1 << square_array[i-j][j]
       side_diag2 << square_array[dif+i-j][dif+j]
     end
-    max_of_string = max_product_of_string(square_array[i], case_count)
-    max_of_row = max_product_of_string(square_array.transpose[i], case_count)
-    max_of_main_diag1 = max_product_of_string(main_diag1, case_count)
-    max_of_main_diag2 = max_product_of_string(main_diag2, case_count)
-    max_of_side_diag1 = max_product_of_string(side_diag1, case_count)
-    max_of_side_diag2 = max_product_of_string(side_diag2, case_count)
-    max_in_square = [max_of_string, max_of_row, max_of_main_diag1, max_of_main_diag2, max_of_side_diag1, max_of_side_diag2].max
-    max = max_in_square if max_in_square > max
+    strings = [square_array[i], square_array.transpose[i], main_diag1, main_diag2, side_diag1, side_diag2]
+    # находим максимум среди произведений case_size элементов во всех i-ых строках (включая столбцы и диагонали)
+    square_max = (strings.map { |string| max_product_of_string(string, case_size) }).max
+    max = square_max if square_max > max
   end
   max
 end
 
-def main(string, case_count)
+def main(string, case_size)
   square_array, array_size = split_string_to_square_array(string)
-  case_count = array_size if case_count > array_size
-  max_of_square(square_array, array_size, case_count)
+  case_size = array_size if case_size > array_size
+  max_of_square(square_array, array_size, case_size)
 end
 
 t1 = Time.new
