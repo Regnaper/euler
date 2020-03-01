@@ -1,7 +1,5 @@
 def main(string)
-  array = string.split
-  sum = array.inject(0) { |sum, elem| sum += elem.to_i }
-  sum.to_s[0, 10]
+  (string.split.inject(0) { |sum, elem| sum += elem.to_i }).to_s[0, 10]
 end
 
 t1 = Time.new
