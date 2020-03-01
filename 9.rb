@@ -1,8 +1,7 @@
 def main
   (1..998).each do |a|
     (a..998).each do |b|
-      c = Math.sqrt(a**2 + b**2)
-      return (a*b*c).floor if a+b+c == 1000
+      return (a * b * (1000-a-b)) if Math.sqrt(a**2 + b**2) == 1000 - a - b
     end
   end
 end
