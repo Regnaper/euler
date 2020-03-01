@@ -1,12 +1,10 @@
 def split_to_array(str, limit)
-  array = str.split("0")
-  array.map! { |elem| elem unless elem.length < limit }
+  array = str.split("0").map! { |elem| elem unless elem.length < limit }
   array.compact!
 end
 
 def main(number, limit=4)
-  max = 0
-  array = split_to_array(number, limit)
+  array, max = split_to_array(number, limit), 0
   array.each do |str|
     (0..str.length-limit).each do |index|
       prod = str[index, limit].split(//).inject(1) { |product, n| product * n.to_i }
