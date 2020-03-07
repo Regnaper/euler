@@ -13,7 +13,7 @@ end
 
 def main()
   (35..).each do |num|
-    return num unless num % 2 == 0 || sum_of_prime_and_double_square?(num)
+    return num if num % 2 != 0 && !sum_of_prime_and_double_square?(num)
   end
 end
 
