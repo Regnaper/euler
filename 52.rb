@@ -1,7 +1,5 @@
 def same?(number, x)
-  multiple = (number * x).digits
-  number = number.digits
-  return true if number.sort == multiple.sort
+  return true if number.digits.sort == (number * x).digits.sort
 end
 
 def main()
